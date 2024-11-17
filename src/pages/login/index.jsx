@@ -1,13 +1,24 @@
 // import bgImage from "../../assets/baloon-image.jpg";
 
+import { useState } from "react";
 import Logo from "../../components/Logo";
 
 const Index = () => {
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCredentials((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className="flex justify-center items-center w-full h-screen bg-[#FCFEFF]">
-      <div className="w-[50%] h-screen bg-[url('/baloon-image.jpg')] bg-cover hidden md:block"></div>
+      <div className="w-[50%] lg:min-w-[560px] h-screen bg-[url('/baloon-image.jpg')] bg-cover hidden md:block"></div>
       <div className="flex justify-start md:justify-center  items-center flex-col p-8 md:p-10 w-full h-full gap-10 rounded-l-6xl">
-        <div className="">
+        <div className="flex justify-center items-center flex-col">
           <Logo />
           <h1 className="text-3xl md:text-5xl font-bold">Welcome back!</h1>
           <p className="text-left mt-3">
@@ -29,6 +40,8 @@ const Index = () => {
               type="email"
               name="email"
               placeholder="Enter email address"
+              value={credentials.emai}
+              onChange={(e) => handleChange(e)}
               className="w-full rounded-xl border-none bg-gray-300 text-gray-600 font-medium outline-[#4F46E5] h-[50px] px-4"
             />
           </div>
@@ -43,6 +56,8 @@ const Index = () => {
               type="password"
               name="password"
               placeholder="Enter valid password"
+              value={credentials.password}
+              onChange={(e) => handleChange(e)}
               className="w-full rounded-xl border-none bg-gray-300 text-gray-600 font-medium outline-[#4F46E5] h-[50px] px-4"
             />
           </div>

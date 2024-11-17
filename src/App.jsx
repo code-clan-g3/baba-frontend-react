@@ -1,16 +1,10 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
+import Desktop from "./pages/Desktop";
+const App = () => {
   return (
-    <>
-      Welcome to baba AI
-    </>
-  )
-}
+    <section>
+      <Desktop />
+    </section>
+  );
+};
 
-export default App
+export default App;

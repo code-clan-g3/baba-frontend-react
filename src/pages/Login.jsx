@@ -1,9 +1,9 @@
 // import bgImage from "../../assets/baloon-image.jpg";
 
 import { useState } from "react";
-import Logo from "../../components/Logo";
+import Logo from "../components/Logo";
 
-const Index = () => {
+const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
   const handleChange = (e) => {
@@ -27,7 +27,7 @@ const Index = () => {
         </div>
         <form
           action=""
-          className="flex justify-center items-center flex-col w-full gap-4"
+          className="flex justify-center items-center flex-col w-full gap-4 px-20"
         >
           <div className="w-full flex flex-col gap-2">
             <label
@@ -40,8 +40,8 @@ const Index = () => {
               type="email"
               name="email"
               placeholder="Enter email address"
-              value={credentials.emai}
-              onChange={(e) => handleChange(e)}
+              value={credentials.email}
+              onChange={handleChange}
               className="w-full rounded-xl border-none bg-gray-300 text-gray-600 font-medium outline-[#4F46E5] h-[50px] px-4"
             />
           </div>
@@ -57,7 +57,7 @@ const Index = () => {
               name="password"
               placeholder="Enter valid password"
               value={credentials.password}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
               className="w-full rounded-xl border-none bg-gray-300 text-gray-600 font-medium outline-[#4F46E5] h-[50px] px-4"
             />
           </div>
@@ -65,15 +65,17 @@ const Index = () => {
             Login
           </button>
         </form>
-        <p className="text-sm text-left w-full font-semibold">
-          Don&apos;t have an account?{" "}
-          <span className="cursor-pointer text-[#4F46E5] hover:text-yellow-600">
-            Create an account.
-          </span>
-        </p>
+        <div className="">
+          <p className="text-sm text-left w-full font-semibold mx-20">
+            Don&apos;t have an account?{" "}
+            <span className="cursor-pointer text-[#4F46E5] hover:text-yellow-600">
+              Create an account.
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Index;
+export default Login;

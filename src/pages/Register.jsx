@@ -77,7 +77,7 @@ const Register = () => {
       <div className="flex justify-start md:justify-center  items-center flex-col p-8 md:p-10 w-full h-full gap-10 rounded-l-6xl">
         <div className="flex justify-center items-center flex-col">
           <Logo />
-          <h1 className="text-3xl md:text-5xl font-bold">Welcome back!</h1>
+          <h1 className="text-3xl md:text-5xl font-bold">Welcome!</h1>
           <p className="text-left mt-3">
             Kindly enter valid credentials to sign up to your account.
           </p>
@@ -85,7 +85,7 @@ const Register = () => {
         <form
           action=""
           onSubmit={handleSubmit}
-          className="flex justify-center items-center flex-col w-full gap-4 px-20"
+          className="flex justify-center items-center flex-col w-full gap-4 pb-20"
         >
           <div className="w-full flex flex-col gap-2">
             <label

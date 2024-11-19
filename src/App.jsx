@@ -12,6 +12,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/chatroom" element={<ChatRoom />} />
+          <Route path="/" element={<LandingPage/>} />
         </Routes>
       </BrowserRouter>
     </>

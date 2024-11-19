@@ -3,6 +3,8 @@ import Sidebar from '../components/navigation/Sidebar';
 import Header from '../components/navigation/Header';
 import MessageList from '../components/chat/MessageList';
 import ChatInput from '../components/chat/ChatInput';
+import { useNavigate } from "react-router-dom";
+
 
 function ChatRoom() {
     const [message, setMessage] = useState('');
@@ -12,16 +14,22 @@ function ChatRoom() {
     const [chats, setChats] = useState([]);
     const [sideLoad, setSideLoad] = useState(false);
     const [gettingMessages, setGettingMessages] = useState(false);
+    const navigate = useNavigate();
   
     useEffect(() => {
       const thread_id = localStorage.getItem("thread_id");
       const token = localStorage.getItem("token")
 
+      if (!!token) {
+      }else{
+        navigate("/signup")
+      }
+
 
       const fetchData = async () => {
         setGettingMessages(true);
         try {
-          const response = await fetch(`http://127.0.0.1:5000/chat/${thread_id}`);
+          const response = await fetch(`https://baba-python-backend.onrender.com/chat/${thread_id}`);
           const result = await response.json();
 
           const formatted_message = result.data.map((msg) => ({
@@ -43,7 +51,7 @@ function ChatRoom() {
       const fetch_chats = async () => {
         try {
           setSideLoad(true);
-          const response = await fetch(`http://127.0.0.1:5000/chat/get_threads`,{
+          const response = await fetch(`https://baba-python-backend.onrender.com/chat/get_threads`,{
             headers: {
               "Authorization": `Bearer ${token}`
             }
@@ -89,7 +97,7 @@ function ChatRoom() {
       setLoading(true);
   
       try {
-        const response = await fetch(`http://127.0.0.1:5000/chat/${thread_id}`, {
+        const response = await fetch(`https://baba-python-backend.onrender.com/chat/${thread_id}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

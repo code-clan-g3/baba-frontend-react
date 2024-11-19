@@ -1,14 +1,23 @@
 // import bgImage from "../../assets/baloon-image.jpg";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
+
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
+  
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+
+      if (!!token) {
+        navigate("/chatroom")
+      }
+  })
 
 
   const handleChange = (e) => {
@@ -25,7 +34,7 @@ const Login = () => {
     setLoading(true);
 
     try{
-      const response = await fetch("http://127.0.0.1:5000/auth/login", {
+      const response = await fetch("https://baba-python-backend.onrender.com/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json", 
@@ -40,7 +49,6 @@ const Login = () => {
         localStorage.setItem("thread_id", data.chat.thread_id)
 
         navigate("/chatroom");
-        alert(data.message);
       } else {
         const errorData = await response.json();
         setError(errorData.message);

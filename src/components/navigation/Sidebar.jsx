@@ -5,14 +5,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 
 export default function Sidebar({ isOpen, onClose, chats, isLoading }) {
   const handleChatClick = (thread_id) => {
-    // Option 1: Reload the entire page
-    // window.location.reload();
 
-    // Option 2: Navigate to a specific route (recommended)
-    // If using React Router
-    // history.push(`/chat/${chatId}`);
-
-    // Option 3: Store selected chat in local storage and reload
     localStorage.setItem('thread_id', thread_id);
     window.location.reload();
   };

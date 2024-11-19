@@ -1,14 +1,24 @@
 // import bgImage from "../../assets/baloon-image.jpg";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
+import { Link } from 'react-router-dom';
+
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
+  
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+
+      if (!!token) {
+        navigate("/chatroom")
+      }
+  })
 
 
   const handleChange = (e) => {
@@ -40,7 +50,6 @@ const Login = () => {
         localStorage.setItem("thread_id", data.chat.thread_id)
 
         navigate("/chatroom");
-        alert(data.message);
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -115,7 +124,7 @@ const Login = () => {
           <p className="text-sm text-left w-full font-semibold mx-20">
             Don&apos;t have an account?{" "}
             <span className="cursor-pointer text-[#4F46E5] hover:text-yellow-600">
-              Create an account.
+            <Link to="/signup" className="some-class">SignUp</Link>
             </span>
           </p>
         </div>

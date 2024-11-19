@@ -3,6 +3,8 @@ import Sidebar from '../components/navigation/Sidebar';
 import Header from '../components/navigation/Header';
 import MessageList from '../components/chat/MessageList';
 import ChatInput from '../components/chat/ChatInput';
+import { useNavigate } from "react-router-dom";
+
 
 function ChatRoom() {
     const [message, setMessage] = useState('');
@@ -12,10 +14,16 @@ function ChatRoom() {
     const [chats, setChats] = useState([]);
     const [sideLoad, setSideLoad] = useState(false);
     const [gettingMessages, setGettingMessages] = useState(false);
+    const navigate = useNavigate();
   
     useEffect(() => {
       const thread_id = localStorage.getItem("thread_id");
       const token = localStorage.getItem("token")
+
+      if (!!token) {
+      }else{
+        navigate("/signup")
+      }
 
 
       const fetchData = async () => {

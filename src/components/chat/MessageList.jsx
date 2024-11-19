@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect, useRef } from 'react';
 import { FaUser, FaRobot, FaSpinner } from 'react-icons/fa';
-import { MdContentCopy, MdRefresh, MdThumbDown, MdShare } from 'react-icons/md';
 
 export default function MessageList({ messages, loading, gettingMessages}) {
   const messagesEndRef = useRef(null);

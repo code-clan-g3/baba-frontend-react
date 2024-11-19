@@ -1,10 +1,15 @@
 // import bgImage from "../../assets/baloon-image.jpg";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false); 
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -12,6 +17,38 @@ const Login = () => {
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    try{
+      const response = await fetch("https://baba-python-backend.onrender.com/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", 
+        },
+        body: JSON.stringify(credentials),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        
+        navigate("/chatroom")
+        alert(data.message);
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message);
+      }
+
+    } catch (error){
+      setError("An error occured. Please try again later.");
+    } finally{
+      setLoading(false);
+    }
   };
 
   return (
@@ -27,6 +64,7 @@ const Login = () => {
         </div>
         <form
           action=""
+          onSubmit={handleSubmit}
           className="flex justify-center items-center flex-col w-full gap-4 px-20"
         >
           <div className="w-full flex flex-col gap-2">
@@ -61,8 +99,14 @@ const Login = () => {
               className="w-full rounded-xl border-none bg-gray-300 text-gray-600 font-medium outline-[#4F46E5] h-[50px] px-4"
             />
           </div>
-          <button className="w-[100%] h-[40px] md:h-[50px] rounded-xl font-bold text-sm md:text-lg bg-[#4F46E5] text-white hover:opacity-95 active:scale-95">
-            Login
+          {error && (
+            <div className="text-red-500 text-sm font-semibold">{error}</div>
+          )}
+          <button
+            className="w-[100%] h-[40px] md:h-[50px] rounded-xl font-bold text-sm md:text-lg bg-[#4F46E5] text-white hover:opacity-95 active:scale-95"
+            disabled={loading} 
+          >
+            {loading ? "Loading..." : "Login"} {}
           </button>
         </form>
         <div className="">

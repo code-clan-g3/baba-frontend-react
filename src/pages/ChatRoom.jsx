@@ -29,7 +29,7 @@ function ChatRoom() {
       const fetchData = async () => {
         setGettingMessages(true);
         try {
-          const response = await fetch(`http://127.0.0.1:5000/chat/${thread_id}`);
+          const response = await fetch(`https://baba-python-backend.onrender.com/chat/${thread_id}`);
           const result = await response.json();
 
           const formatted_message = result.data.map((msg) => ({
@@ -51,7 +51,7 @@ function ChatRoom() {
       const fetch_chats = async () => {
         try {
           setSideLoad(true);
-          const response = await fetch(`http://127.0.0.1:5000/chat/get_threads`,{
+          const response = await fetch(`https://baba-python-backend.onrender.com/chat/get_threads`,{
             headers: {
               "Authorization": `Bearer ${token}`
             }
@@ -97,7 +97,7 @@ function ChatRoom() {
       setLoading(true);
   
       try {
-        const response = await fetch(`http://127.0.0.1:5000/chat/${thread_id}`, {
+        const response = await fetch(`https://baba-python-backend.onrender.com/chat/${thread_id}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

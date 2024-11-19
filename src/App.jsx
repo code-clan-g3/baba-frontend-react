@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
-import Desktop from "./pages/Desktop"
+import ChatRoom from "./pages/ChatRoom"
 import Register from "./pages/Register"
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Register />} />
-          <Route path="/chatroom" element={<Desktop />} />
+          <Route path="/chatroom" element={<ChatRoom />} />
         </Routes>
       </BrowserRouter>
     </>

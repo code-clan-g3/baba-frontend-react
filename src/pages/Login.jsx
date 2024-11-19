@@ -25,7 +25,7 @@ const Login = () => {
     setLoading(true);
 
     try{
-      const response = await fetch("https://baba-python-backend.onrender.com/auth/login", {
+      const response = await fetch("http://127.0.0.1:5000/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json", 
@@ -36,8 +36,10 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("token", data.token);
-        
-        navigate("/chatroom")
+        localStorage.setItem("name", data.user.full_name);
+        localStorage.setItem("thread_id", data.chat.thread_id)
+
+        navigate("/chatroom");
         alert(data.message);
       } else {
         const errorData = await response.json();

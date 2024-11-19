@@ -1,6 +1,6 @@
 import { baloon } from "../assets";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [credentials, setCredentials] = useState({
@@ -63,20 +63,20 @@ const Register = () => {
 
   return (
     <section className="flex gap-10">
-      <div className="bg-[#B0BAC366] 40% overflow-hidden w-[800px] h-screen md:flex hidden">
+      <div className="bg-[#B0BAC366] fixed overflow-hidden w-[800px] h-screen lg:flex hidden">
         <img
           src={baloon}
           alt="Baloon"
           className="md:w-[500px] md:flex hidden pt-[100px] m-auto"
         />
       </div>
-      <div className="bg-[#FFF] w-[800px] px-[100px] pt-[200px]">
+      <div className="bg-[#FFF] lg:w-[800px] px-10 py-20 lg:ms-[800px]">
         <h1 className="font-bold text-[30px] text-center pb-[40px]">
           Create your Free account
         </h1>
 
         <form action="" onSubmit={handleSubmit}>
-          <div className="flex flex-col gap-[40px] w-[600px]">
+          <div className="flex flex-col gap-[40px] lg:w-[600px]">
             <div className="flex flex-col text-left">
               <label
                 htmlFor="Full Name"
@@ -157,9 +157,9 @@ const Register = () => {
           </button>
           <span className="mt-[50px] text-[20px]">
             Already have an account?{" "}
-            <a href="#" className="text-blue-500">
+            <Link to="/login" className="text-blue-500">
               login
-            </a>
+            </Link>
           </span>
         </form>
       </div>
